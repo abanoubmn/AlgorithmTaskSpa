@@ -1,0 +1,59 @@
+<div class="container">
+  <form [formGroup]="employeeForm" class="form-horizontal" role="form" (ngSubmit)="postEmployee()">
+    <input type="hidden" formControlName="id" *ngIf="employee">
+    <div class="form-group row"
+      [ngClass]="{'has-error': employeeForm.get('firstName').errors && employeeForm.get('firstName').touched}">
+      <label for="firstName" class="control-label col-sm-12">First Name</label>
+
+      <div class="col-sm-4">
+        <input type="text" id="firstName" class="form-control" placeholder="First Name" formControlName="firstName">
+        <span style="color: red;"
+          *ngIf="employeeForm.get('firstName').errors && employeeForm.get('firstName').touched">This field is required</span>
+      </div>
+    </div>
+    <div class="form-group row"
+      [ngClass]="{'has-error': employeeForm.get('lastName').errors && employeeForm.get('lastName').touched}">
+      <label for="lastName" class="control-label col-sm-12">Last Name</label>
+
+      <div class="col-sm-4">
+        <input type="text" id="lastName" class="form-control" placeholder="lastName" formControlName="lastName">
+        <span style="color: red;"
+          *ngIf="employeeForm.get('lastName').errors && employeeForm.get('lastName').touched">This field is required</span>
+      </div>
+    </div>
+    <div class="form-group row"
+      [ngClass]="{'has-error': employeeForm.get('dateOfBirth').errors && employeeForm.get('dateOfBirth').touched}">
+      <label for="dateOfBirth" class="control-label col-sm-12">Date Of Birth</label>
+
+      <div class="col-sm-4">
+        <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+        <span style="color: red;"
+          *ngIf="employeeForm.get('dateOfBirth').errors && employeeForm.get('dateOfBirth').touched">This field is required</span>
+      </div>
+    </div>
+    <div class="form-group row">
+        <label for="departmentId" class="control-label col-sm-12">Department</label>
+
+      <div class="col-sm-4">
+        <select class="form-control" id="departmentId" formControlName="departmentId">
+          <option *ngFor="let department of departments" value="{{department.id}}"
+            [selected]="employee && employee.departmentId==department.id">
+            {{department.depName}}
+          </option>
+        </select>
+        <span style="color: red;"
+        *ngIf="employeeForm.get('departmentId').errors && employeeForm.get('departmentId').touched">This field is required</span>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-1">
+        <input type="checkbox" id="isManager" formControlName="isManager"
+          (change)="isManagerChange($event.target.checked)" [checked]="employee && employee.isManager">
+      </div>
+      <label for="isManager" class="control-label col-sm-2">Is Manager</label>
+
+    </div>
+    <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>

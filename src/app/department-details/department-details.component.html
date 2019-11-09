@@ -1,0 +1,15 @@
+<div class="container">
+  <form [formGroup]="departmentFrom" class="form-horizontal" role="form" (ngSubmit)="postDepartment()">
+    <input type="hidden" formControlName="id" *ngIf="department">
+    <div class="form-group row"
+      [ngClass]="{'has-error': departmentFrom.get('depName').errors && departmentFrom.get('depName').touched}">
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="Department Name" formControlName="depName">
+        <span class="help-block"
+          *ngIf="departmentFrom.get('depName').errors && departmentFrom.get('depName').touched">Required</span>
+      </div>
+    </div>
+    
+    <button type="submit" [disabled]="!departmentFrom.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>

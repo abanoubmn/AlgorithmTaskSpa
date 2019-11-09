@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row mb-1">
+    <div class="col-sm-12">
+      <a role="button" class="btn btn-success" [routerLink]="['/department-details']">Add Department</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Department Name</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let department of departments">
+              <td>{{department.depName}}</td>
+              <td><a [routerLink]="['/department-details', department.id]">
+                  Edit</a></td>
+              <td>
+                <a href="javascript:void(0)" (click)="deleteDepartment(department.id)">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

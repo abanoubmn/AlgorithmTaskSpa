@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row form-group mb-1">
+    <div class="col-sm-4">
+      <input [(ngModel)]="filterString" class="form-control" placeholder="Search by name" (keyup)="filter()">
+    </div>
+  </div>
+  <div class="table-responive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Department Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{employee.firstName}}</td>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.depName}}</td>
+          <td><a [routerLink]="['/employee-details', employee.id]">
+              Edit</a></td>
+          <td>
+            <a href="javascript:void(0)" (click)="deleteEmployee(employee.id)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
